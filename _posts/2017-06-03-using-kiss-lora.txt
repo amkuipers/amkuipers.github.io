@@ -1,0 +1,31 @@
+---
+layout: post
+title: Using KISS LoRa board
+---
+
+# Story
+
+At the [EA Beurs 2017](www.eabeurs.nl) about 2000 gadgets were distributed. These gadgets are called KISS LORA, 
+and were produced live. From a PCB to a soldered and tested gadget. It was interesting to see what all these different 
+machines could do in this process. 
+
+For the lucky ones that got a gadget, these had to go to several suppliers to collect additional parts for the gadget,
+like a battery, cable. Then an TheThingsNetwork account should be created and then the gadget could be commisioned.
+
+## Commissioning the gadget
+
+At a supplier the battery and usb cable had to be installed, and then, from a phone (using QR code) the commissioning
+website could be visited. After the TTN login, a terminal was selected (there were multiple terminals on site), and then
+the gadget was commissioned.
+
+That basically means that in your TTN account, a new Application with a new Device was created. Then the gadget would
+be registered for OTAA. Unfortunately, the commissioning website kept on spinning, even on the next day when visiting
+the same URL. So I had to find out what was finished, and what still had to be configured.
+
+## The source
+
+Fortunately the source of the gadget is available on github. 
+
+ _will add more_
+
+
