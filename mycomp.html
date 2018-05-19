@@ -12,6 +12,7 @@
 
         attributeChangedCallback(name, oldValue, newValue) {
             console.log('attributeChangedCallback ${name}, ${oldValue}, ${newValue}');
+            this.innerText = newValue;
         }
     }
     customElements.define("my-comp", MyComp);
