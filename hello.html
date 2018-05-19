@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hello World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="import" href="mycomp.html">
+</head>
+<body>
+
+    <h1>Helo World!</h1>
+    <br/>
+    <output>hi</output>
+    <input type="text" id="name" />
+    <button>click me</button>
+
+    <p>Custom component: </p>
+    <my-comp message="It is alive!"/>
+
+    <!-- put last so it has knowledge of the elements -->
+    <script src="main.js"></script>
+</body>
+</html>

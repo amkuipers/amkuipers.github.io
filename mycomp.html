@@ -1,0 +1,18 @@
+<script>
+
+    class MyComp extends HTMLElement {
+        connectedCallback() {
+            console.log("MyComp initialized");
+            this.innerText = "My Component";
+        }
+
+        static get observedAttributes() {
+            return ["message"];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            console.log('attributeChangedCallback ${name}, ${oldValue}, ${newValue}');
+        }
+    }
+    customElements.define("my-comp", MyComp);
+</script>
