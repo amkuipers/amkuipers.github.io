@@ -24,7 +24,9 @@ class Fun {
 
         // local file has CORS issue
         //fetch("data.json").then( response => console.log(response) );
-        fetch("data.json").then( response => console.log(response) );
+        fetch("data.json")
+            .then(response => response.json())
+            .then(js => console.log(js) );
     }
 }
 
