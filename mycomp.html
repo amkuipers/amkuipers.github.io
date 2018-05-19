@@ -5,6 +5,7 @@
             console.log("MyComp initialized");
             // it is executed after the attributeChangedCallback
             //this.innerText = "My Component";
+            console.log(`The message attribute is currently ${this.bericht}`);
         }
 
         static get observedAttributes() {
@@ -15,6 +16,7 @@
             // use backtick for vars in the log
             console.log(`attributeChangedCallback ${name}, ${oldValue}, ${newValue}`);
             this.innerText = newValue;
+            this.bericht = newValue;
         }
     }
     customElements.define("my-comp", MyComp);
