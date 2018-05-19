@@ -3,7 +3,8 @@
     class MyComp extends HTMLElement {
         connectedCallback() {
             console.log("MyComp initialized");
-            this.innerText = "My Component";
+            // it is executed after the attributeChangedCallback
+            //this.innerText = "My Component";
         }
 
         static get observedAttributes() {
