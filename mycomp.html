@@ -2,12 +2,12 @@
     // webcomponent without styling
 
     class MyComp extends HTMLElement {
-        // implicit 'value'
+        
 
         constructor() {
             // always call super() first in constructor
             super();
-            this.value = "Component initial value";
+            this._value = "Component initial value";
 
             // shadow DOM with div and style elements
             var shadow = this.attachShadow({mode: 'open'});
@@ -16,6 +16,14 @@
             shadow.appendChild(style);
             shadow.appendChild(div);
 
+        }
+
+        get value() {
+            return this._value;
+        }
+
+        set value(val) {
+            this.setAttribute('message', val);
         }
         
         myStyle(elem) {
@@ -28,10 +36,41 @@
          * attribute is assigned in the element.
          */
         connectedCallback() {
-            console.log(`The message attribute is currently ${this.value}`);
-            this.innerText = this.value;
+            console.log(`The message attribute is currently ${this._value}`);
+            this.innerText = this._value;
             updateStyle(this);
             this.myStyle(this);
+
+            // sometimes the template is just created here
+            var template = `
+                <style>
+                    .my-div {
+                        width: 50%;
+                        background-color: #EDF2F4; 
+                        border-radius: 5px;
+                        color: #FFF
+                    }
+                    .my-div-inner {
+                        text-align: center;
+                    }
+                </style>
+                <div class="my-div">
+                    <div class="my-div-inner">${this._value}</div>
+                </div>
+            `;
+
+            // assign the template here
+            this.shadow.innerHTML = template;
+        }
+
+        disconnectedCallback() {
+            console.log(`disconnected   Callback; disconnected.`);
+
+        }
+
+        adoptedCallback() {
+            console.log(`adoptedCallback; adopted to a new document.`);
+
         }
 
         /**
@@ -49,6 +88,10 @@
         attributeChangedCallback(name, oldValue, newValue) {
             // use backtick for vars in the log
             console.log(`attributeChangedCallback ${name}, ${oldValue}, ${newValue}`);
+            switch(name) {
+                case 'message':
+                    this._value = newValue || '';
+            }
             this.innerText = newValue;
             this.value = newValue;
             //

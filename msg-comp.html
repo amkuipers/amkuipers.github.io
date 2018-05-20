@@ -1,0 +1,59 @@
+<script>
+    // webcomponent without styling
+    // usage <msg-comp message="hi"/>
+    class MsgComp extends HTMLElement {
+
+        constructor() {
+            // always call super() first in constructor
+            super();
+            this._value = "";
+        }
+
+        get value() {
+            return this._value;
+        }
+
+        set value(val) {
+            this.setAttribute('message', val);
+        }
+        
+
+        /**
+         * Called after this element is added to the DOM. So 
+         * observed attributes are set before this, when the
+         * attribute is assigned in the element.
+         */
+        connectedCallback() {
+            console.log(`The message attribute is currently ${this._value}`);
+            this.innerText = this._value;
+        }
+
+        /**
+         * Returns the objects that are observed, resulting in
+         * the attributeChangedCallback being called.
+         */
+        static get observedAttributes() {
+            return ["message"];
+        }
+
+        /**
+         * Callback for changed attributes that are observed using
+         * the observedAttributes.
+         */
+        attributeChangedCallback(name, oldValue, newValue) {
+            // use backtick for vars in the log
+            console.log(`attributeChangedCallback ${name}, ${oldValue}, ${newValue}`);
+            switch(name) {
+                case 'message':
+                    this._value = newValue || '';
+            }
+        }
+    }
+
+    /** 
+     * Custom element defined name must contain a dash, so they
+     * have a distinct name.
+     */
+    customElements.define("msg-comp", MsgComp);
+
+</script>
