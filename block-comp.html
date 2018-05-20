@@ -1,5 +1,5 @@
 <script>
-    // webcomponent without styling
+    // webcomponent with square having 'size' and 'color'
 
     class BlockComp extends HTMLElement {
         
@@ -14,7 +14,8 @@
             var style = document.createElement('style');
             shadow.appendChild(style);
             shadow.appendChild(div);
-
+            
+            div.appendChild(document.createTextNode("@"));
         }
 
         /**
@@ -23,7 +24,7 @@
          * attribute is assigned in the element.
          */
         connectedCallback() {
-            this.updateStyle(this);
+            this.updateStyle();
         }
 
         /**
@@ -41,6 +42,7 @@
         attributeChangedCallback(name, oldValue, newValue) {
             // use backtick for vars in the log
             console.log(`attributeChangedCallback ${name}, ${oldValue}, ${newValue}`);
+            
             switch(name) {
                 case 'size':
                     this._size = newValue || 10;
@@ -48,17 +50,16 @@
                 case 'color':
                     this._color = newValue || RED;
             }
-            //
-            updateStyle(this);
-            
+
+            this.updateStyle();
         }
     
         /**
          * Update the style of the div node in the shadow dom, 
-         * using the provided attributes l and c.
+         * using the attributes.
          */
-        updateStyle(elem) {
-            var shadow = elem.shadowRoot;
+        updateStyle() {
+            var shadow = this.shadowRoot;
             var childNodes = shadow.childNodes;
             for(var i = 0; i < childNodes.length; i++) {
                 if(childNodes[i].nodeName === 'STYLE') {
@@ -70,6 +71,7 @@
             }
         }
 
+        // end class
     }
 
     /** 
@@ -77,7 +79,5 @@
      * have a distinct name.
      */
     customElements.define("block-comp", BlockComp);
-
-
 
 </script>
