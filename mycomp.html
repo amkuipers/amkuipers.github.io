@@ -18,8 +18,11 @@
 
         }
 
-
-        function updateStyle(elem) {
+        /**
+         * Update the style of the div node in the shadow dom, 
+         * using the provided attributes l and c.
+         */
+        updateStyle(elem) {
             var shadow = elem.shadowRoot;
             var childNodes = shadow.childNodes;
             for(var i = 0; i < childNodes.length; i++) {
@@ -40,6 +43,7 @@
         connectedCallback() {
             console.log(`The message attribute is currently ${this.value}`);
             this.innerText = this.value;
+            updateStyle(this);
         }
 
         /**
@@ -59,6 +63,8 @@
             console.log(`attributeChangedCallback ${name}, ${oldValue}, ${newValue}`);
             this.innerText = newValue;
             this.value = newValue;
+            //
+            updateStyle(this);
         }
     }
 
