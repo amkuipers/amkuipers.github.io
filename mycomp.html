@@ -2,14 +2,12 @@
     // webcomponent without styling
 
     class MyComp extends HTMLElement {
-        // used as default
-        initialValue = {message : "Component initial value"};
         // implicit 'value'
 
         constructor() {
             // always call super() first in constructor
             super();
-            this.value = this.initialValue;
+            this.value = "Component initial value";
         }
 
         /**
