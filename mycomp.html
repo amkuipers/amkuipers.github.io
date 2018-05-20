@@ -8,6 +8,28 @@
             // always call super() first in constructor
             super();
             this.value = "Component initial value";
+
+            // shadow DOM with div and style elements
+            var shadow = this.attachShadow({mode: 'open'});
+            var div = document.createElement('div');
+            var style = document.createElement('style');
+            shadow.appendChild(style);
+            shadow.appendChild(div);
+
+        }
+
+
+        function updateStyle(elem) {
+            var shadow = elem.shadowRoot;
+            var childNodes = shadow.childNodes;
+            for(var i = 0; i < childNodes.length; i++) {
+                if(childNodes[i].nodeName === 'STYLE') {
+                    childNodes[i].textContent = 'div {' +
+                          ' width: ' + elem.getAttribute('l') + 'px;' +
+                          ' height: ' + elem.getAttribute('l') + 'px;' +
+                          ' background-color: ' + elem.getAttribute('c');
+                }
+            }
         }
 
         /**
