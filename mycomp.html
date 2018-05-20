@@ -1,23 +1,51 @@
 <script>
+    // webcomponent without styling
 
     class MyComp extends HTMLElement {
-        connectedCallback() {
-            console.log("MyComp initialized");
-            // it is executed after the attributeChangedCallback
-            //this.innerText = "My Component";
-            console.log(`The message attribute is currently ${this.bericht}`);
+        // used as default
+        initialValue = {message : "Component initial value"};
+        // implicit 'value'
+
+        constructor() {
+            // always call super() first in constructor
+            super();
+            this.value = this.initialValue;
         }
 
+        /**
+         * Called after this element is added to the DOM. So 
+         * observed attributes are set before this, when the
+         * attribute is assigned in the element.
+         */
+        connectedCallback() {
+            console.log(`The message attribute is currently ${this.value}`);
+            this.innerText = this.value;
+        }
+
+        /**
+         * Returns the objects that are observed, resulting in
+         * the attributeChangedCallback being called.
+         */
         static get observedAttributes() {
             return ["message"];
         }
 
+        /**
+         * Callback for changed attributes that are observed using
+         * the observedAttributes.
+         */
         attributeChangedCallback(name, oldValue, newValue) {
             // use backtick for vars in the log
             console.log(`attributeChangedCallback ${name}, ${oldValue}, ${newValue}`);
             this.innerText = newValue;
-            this.bericht = newValue;
+            this.value = newValue;
         }
     }
+
+    /** 
+     * Custom element defined name must contain a dash, so they
+     * have a distinct name.
+     */
     customElements.define("my-comp", MyComp);
+
 </script>
