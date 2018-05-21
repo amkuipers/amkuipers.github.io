@@ -1,3 +1,7 @@
+## Webcomponents testing merged with the Github pages and Jekyll
+
+See the hello.html for some experimentation with webcomponent variations.
+
 ## Welcome to GitHub Pages / README.md using Jekyll
 
 You can use the [editor on GitHub](https://github.com/amkuipers/amkuipers.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.

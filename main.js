@@ -1,4 +1,6 @@
-
+/**
+ * A javascript class that connects html elements, and that retrieves json from remote.
+ */
 class Fun {
     constructor() {
         console.log("Object being constructed ");
@@ -10,7 +12,7 @@ class Fun {
         // similar to jQuery, # is to the id
         this.inputText = document.querySelector("#name");
         this.outputText = document.querySelector("output");
-        // onkeyup must be lowercase
+        // onkeyup must be lowercase method name
         // bind to input on every key
         this.inputText.onkeyup =  e => console.log(e.key); 
         // bind input to output (on lost of focus)
@@ -24,6 +26,9 @@ class Fun {
 
         // local file has CORS issue
         //fetch("data.json").then( response => console.log(response) );
+
+
+        // fetch data from the server, handle as json and then log it
         fetch("data.json")
             .then(response => response.json())
             .then(js => console.log(js) );
