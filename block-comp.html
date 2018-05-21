@@ -78,7 +78,8 @@
             for(var i = 0; i < childNodes.length; i++) {
                 if(childNodes[i].nodeName === 'STYLE') {
                     childNodes[i].textContent = 'div {' +
-                            ' border: thin solid black;'+
+                        //    ' border: thin solid black;'+
+                            ' text-align: center;'+
                             ' width: ' + this._size + 'px;' +
                             ' height: ' + this._size + 'px;' +
                             ' background-color: ' + this._color;
