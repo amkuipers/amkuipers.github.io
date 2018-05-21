@@ -1,6 +1,8 @@
 ## Webcomponents testing merged with the Github pages and Jekyll
 
 See the hello.html for some experimentation with webcomponent variations.
+After updating the code, the Jekyll process takes few seconds or a minute to 
+expose it on the pages domain [Hello](https://amkuipers.github.io/hello.html).
 
 ## Welcome to GitHub Pages / README.md using Jekyll
 
