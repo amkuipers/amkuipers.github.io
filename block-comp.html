@@ -1,6 +1,8 @@
 <script>
     // webcomponent with square having 'size' and 'color'
-
+    // uses shadow dom
+    // uses create elements
+    // replaces the components style sheet in shadow dom
     class BlockComp extends HTMLElement {
         
 
@@ -14,8 +16,8 @@
             var style = document.createElement('style');
             shadow.appendChild(style);
             shadow.appendChild(div);
-            
-            div.appendChild(document.createTextNode("@"));
+
+            //div.appendChild(document.createTextNode("@"));
         }
 
         /**
@@ -49,13 +51,14 @@
                     break;
                 case 'color':
                     this._color = newValue || RED;
+                    break;
             }
 
             this.updateStyle();
         }
     
         /**
-         * Update the style of the div node in the shadow dom, 
+         * Replace the CSS STYLE of the DIV node in the shadow dom, 
          * using the attributes.
          */
         updateStyle() {

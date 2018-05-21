@@ -1,13 +1,12 @@
 <script>
-    // webcomponent without styling
-    // usage <msg-comp message="hi"/>
-    // no shadow dom
-    class MsgComp extends HTMLElement {
+    // webcomponent with styling
+    // uses a backticked template for shadow dom
+    // template only in connected callback
+    class MyComp extends HTMLElement {
 
         constructor() {
             // always call super() first in constructor
             super();
-            this._value = "";
         }
 
         /**
@@ -16,8 +15,28 @@
          * attribute is assigned in the element.
          */
         connectedCallback() {
-            console.log(`The msg-comp added to the dom with message attribute ${this._value}`);
-            this.innerText = this._value;
+            console.log(`The message attribute is currently ${this._value}`);
+
+            // sometimes the template is just created here
+            var template = `
+                <style>
+                    .my-div {
+                        width: 50%;
+                        background-color: #EDF2F4; 
+                        border-radius: 5px;
+                        color: #FFF
+                    }
+                    .my-div-inner {
+                        text-align: center;
+                    }
+                </style>
+                <div class="my-div">
+                    <div class="my-div-inner">${this._value}</div>
+                </div>
+            `;
+
+            // assign the template here
+            this.shadow.innerHTML = template;
         }
 
         /**
@@ -34,11 +53,10 @@
          */
         attributeChangedCallback(name, oldValue, newValue) {
             // use backtick for vars in the log
-            console.log(`attributeChangedCallback (${name}, ${oldValue}, ${newValue})`);
+            console.log(`attributeChangedCallback ${name}, ${oldValue}, ${newValue}`);
             switch(name) {
                 case 'message':
                     this._value = newValue || '';
-                    break;
             }
         }
     }
@@ -47,6 +65,6 @@
      * Custom element defined name must contain a dash, so they
      * have a distinct name.
      */
-    customElements.define("msg-comp", MsgComp);
+    customElements.define("block3-comp", Block3Comp);
 
 </script>
