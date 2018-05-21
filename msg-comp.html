@@ -11,6 +11,20 @@
         }
 
         /**
+         * Property from attribute
+         */
+        get message() {
+            return this.getAttribute('message');
+        }
+
+        /**
+         * Set attribute via property
+         */
+        set message(val) {
+            this.setAttribute('message', val);
+        }
+
+        /**
          * Called after this element is added to the DOM. So 
          * observed attributes are set before this, when the
          * attribute is assigned in the element.
