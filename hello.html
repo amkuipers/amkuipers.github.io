@@ -22,10 +22,11 @@
     <msg-comp message="First">cannot be self closing</msg-comp>
     <msg-comp message="Second">cannot be self closing</msg-comp>
 
-    <p>Custom component block: </p>
+    <p>Custom component block, with nested html: </p>
     <block-comp size=60 color="BLUE"></block-comp>
-    <block-comp size=60 color="RED">red</block-comp>
-    <block-comp size=60 color="YELLOW"><p>Y</p></block-comp>
+    <block-comp size=60 color="RED"><ul><li>red</li></ul></block-comp>
+    <block-comp size=60 color="YELLOW"><p>YLO</p></block-comp>
+    <block-comp size=20% color="GREY">scaled</block-comp>
 
     <p>Trailer</p>
     <!-- put last so it has knowledge of the elements -->
