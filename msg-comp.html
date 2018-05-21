@@ -7,7 +7,7 @@
         constructor() {
             // always call super() first in constructor
             super();
-            this._value = "";
+            this._value = "...";
         }
 
         /**
@@ -17,6 +17,14 @@
          */
         connectedCallback() {
             console.log(`The msg-comp added to the dom with message attribute ${this._value}`);
+            this.updateView();
+        }
+
+        /**
+         * Update the content and view. Called from the connectedCallback and the attributeChangedCallback
+         * methods.
+         */
+        updateView() {
             this.innerText = this._value;
         }
 
@@ -40,6 +48,8 @@
                     this._value = newValue || '';
                     break;
             }
+            //
+            this.updateView();
         }
     }
 
