@@ -14,6 +14,7 @@
          * Property from attribute
          */
         get message() {
+            console.log("property get message as ",val);
             return this.getAttribute('message');
         }
 
@@ -21,6 +22,7 @@
          * Set attribute via property
          */
         set message(val) {
+            console.log("property set message to ",val);
             this.setAttribute('message', val);
         }
 
@@ -64,6 +66,19 @@
             }
             //
             this.updateView();
+            
+            // event dispatcher
+            // uses CustomEvent
+            // the detail of CustomEvent specifies a json object or value
+            this.dispatchEvent( new CustomEvent('message', {
+                // view: window,
+                // bubbles: true, 
+                // cancelable: true,
+                detail: {
+                    old: oldValue,
+                    new: newValue
+                }
+            }));
         }
     }
 
