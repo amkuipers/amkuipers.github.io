@@ -12,9 +12,11 @@ class Fun {
         // similar to jQuery, # is to the id
         this.inputText = document.querySelector("#name");
         this.outputText = document.querySelector("output");
+        this.updateableMsg = document.querySelector("#updateable-msg");
+
         // onkeyup must be lowercase method name
         // bind to input on every key
-        this.inputText.onkeyup =  e => console.log(e.key); 
+        this.inputText.onkeyup =  e => this.updateableMsg.message = e.key; //e => console.log(e.key); 
         // bind input to output (on lost of focus)
         this.inputText.onchange = e => this.outputText.innerText = e.target.value; 
     }
