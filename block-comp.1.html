@@ -1,0 +1,106 @@
+<template>
+    <style></style>
+    <div></div>
+</template>
+
+<script>
+    // webcomponent with square having 'size' and 'color'
+    // uses shadow dom
+    // uses create elements
+    // replaces the components style sheet in shadow dom
+    class BlockComp extends HTMLElement {
+        // my editor doesn't like this
+        const tpl = (document.currentScript || document._currentScript).ownerDocument.querySelector('template').content;
+
+        constructor() {
+            // always call super() first in constructor
+            super();
+
+            // shadow DOM with div and style elements
+            var shadow = this.attachShadow({mode: 'open'});
+            //var div = document.createElement('div');
+            //var style = document.createElement('style');
+            //shadow.appendChild(style);
+            //shadow.appendChild(div);
+            this.shadowRoot.appendChild(document.importNode(tpl, true));
+
+            // nested content
+            //div.innerHTML = super.innerHTML;
+
+            //div.appendChild(document.createTextNode("@"));
+//            if (super.hasChildNodes) {
+//                console.log("my children are: ",super.children);
+//               console.log("my childnodes are: ",super.childNodes);
+//                console.log("my innerhtml is ",super.innerHTML);
+//            } else {
+//                console.log("No child nodes");
+//            }
+
+        }
+
+        /**
+         * Called after this element is added to the DOM. So 
+         * observed attributes are set before this, when the
+         * attribute is assigned in the element.
+         */
+        connectedCallback() {
+            this.updateStyle();
+        }
+
+        /**
+         * Returns the objects that are observed, resulting in
+         * the attributeChangedCallback being called.
+         */
+        static get observedAttributes() {
+            return ["size", "color"];
+        }
+
+        /**
+         * Callback for changed attributes that are observed using
+         * the observedAttributes.
+         */
+        attributeChangedCallback(name, oldValue, newValue) {
+            // use backtick for vars in the log
+            console.log(`attributeChangedCallback ${name}, ${oldValue}, ${newValue}`);
+            
+            switch(name) {
+                case 'size':
+                    this._size = newValue || 10;
+                    break;
+                case 'color':
+                    this._color = newValue || RED;
+                    break;
+            }
+
+            this.updateStyle();
+        }
+    
+        /**
+         * Replace the CSS STYLE of the DIV node in the shadow dom, 
+         * using the attributes.
+         */
+        updateStyle() {
+            var shadow = this.shadowRoot;
+            var childNodes = shadow.childNodes;
+            for(var i = 0; i < childNodes.length; i++) {
+                if(childNodes[i].nodeName === 'STYLE') {
+                    childNodes[i].textContent = 'div {' +
+                            ' border: thin solid black;'+
+                            ' text-align: center;'+
+                            ' width: ' + this._size + 'px;' +
+                            ' height: ' + this._size + 'px;' +
+                            ' background-color: ' + this._color;
+                }
+            }
+        }
+
+        // end class
+    }
+
+    /** 
+     * Custom element defined name must contain a dash, so they
+     * have a distinct name.
+     */
+    customElements.define("block-comp", BlockComp);
+
+</script>

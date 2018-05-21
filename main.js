@@ -21,7 +21,7 @@ class Fun {
         this.inputText.onchange = e => this.outputText.innerText = e.target.value; 
 
         // event from the custom component 
-        this.updateableMsg.addEventListener('message', e => console.log(e.detail.old + ' to ' + e.detail.new));
+        this.updateableMsg.addEventListener('message', e => console.log('listen '+e.detail.old + ' to ' + e.detail.new));
     }
 
     fetchData() {
