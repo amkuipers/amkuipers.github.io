@@ -17,14 +17,17 @@
             shadow.appendChild(style);
             shadow.appendChild(div);
 
+            // nested content
+            div.innerHTML = super.innerHTML;
+
             //div.appendChild(document.createTextNode("@"));
-            if (super.hasChildNodes) {
-                console.log("my children are: ",super.children);
-                console.log("my childnodes are: ",super.childNodes);
-                console.log("my innerhtml is ",super.innerHTML);
-            } else {
-                console.log("No child nodes");
-            }
+//            if (super.hasChildNodes) {
+//                console.log("my children are: ",super.children);
+//               console.log("my childnodes are: ",super.childNodes);
+//                console.log("my innerhtml is ",super.innerHTML);
+//            } else {
+//                console.log("No child nodes");
+//            }
 
         }
 
